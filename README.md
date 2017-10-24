@@ -4,7 +4,7 @@
 ## This plugin is not compatible on Android, as there is no suitable API.
 
 ## iOS
-<img src="https://github.com/davecoffin/nativescript-modal-datetimepicker/blob/master/assets/iosdatepicker.gif?raw=true" height="320" > 
+<img src="https://github.com/davecoffin/nativescript-blur/blob/master/blur.gif?raw=true" height="320" > 
 
 ## Installation
 
