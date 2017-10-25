@@ -21,6 +21,7 @@
         "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
         "debug.ios": "npm i && npm run tsc && cd ../demo && tns debug ios --syncAllFiles",
         "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
+        "debug.android": "npm i && npm run tsc && cd ../demo && tns debug android --syncAllFiles",
         "demo.reset": "cd ../demo && rimraf platforms",
         "plugin.prepare": "npm run tsc && cd ../demo && tns plugin remove nativescript-blur && tns plugin add ../src",
         "clean": "cd ../demo && rimraf hooks node_modules platforms && cd ../src && rimraf node_modules && npm run plugin.link",
