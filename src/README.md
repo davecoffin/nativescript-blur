@@ -31,7 +31,9 @@ makeKittyBlurry() {
 }
 
 clearUpKitty() {
-    blur.off('kitty').then(;
+    blur.off('kitty').then(() => {
+        console.log('Kitty has cleared up.')
+    });
 }
 
 ```
