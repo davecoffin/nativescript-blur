@@ -2,11 +2,6 @@ import * as application from 'tns-core-modules/application';
 import * as frame from "tns-core-modules/ui/frame";
 import * as utilsModule from "tns-core-modules/utils/utils";
 
-
-declare var com: any;
-
-var BlurKit = com.wonderkiln.blurkit.BlurKit;
-
 export class Blur {
     constructor(dimOnAndroid?) {
         if (dimOnAndroid) this.dimOnAndroid = true;
@@ -28,8 +23,8 @@ export class Blur {
                 if (!this.nsViewMap[viewName]) {
                     this.nsViewMap[viewName] = nsView;
                     nsView.opacity = 0;
-                    nsView.backgroundColor = 'rgba(0,0,0,0.7)';
-                    if (theme == 'light') nsView.backgroundColor = 'rgba(255,255,255,0.7)';
+                    nsView.backgroundColor = 'rgba(0,0,0,0.8)';
+                    if (theme == 'light') nsView.backgroundColor = 'rgba(255,255,255,0.8)';
                     nsView.animate({
                         opacity: 1,
                         duration: duration
