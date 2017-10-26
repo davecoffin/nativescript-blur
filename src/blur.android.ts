@@ -2,49 +2,67 @@ import * as application from 'tns-core-modules/application';
 import * as frame from "tns-core-modules/ui/frame";
 import * as utilsModule from "tns-core-modules/utils/utils";
 
-// declare module com {
-//     export module wonderkiln {
-//         export module blurkit {
-//             export class BlurKit {
-//                 public static init(context:android.content.Context): void;
-//                 public blur(src:android.view.View, radius:number): android.graphics.Bitmap;
-//                 public getInstance(): com.wonderkiln.blurkit.BlurKit;
-//             }
-//         }
-//     }
-// }
 
 declare var com: any;
 
-var blurKit = com.wonderkiln.blurkit.BlurKit;
+var BlurKit = com.wonderkiln.blurkit.BlurKit;
 
 export class Blur {
-    constructor() {
-        console.log('initting blurkit');
-        blurKit.init(utilsModule.ad.getApplicationContext());
+    constructor(dimOnAndroid?) {
+        if (dimOnAndroid) this.dimOnAndroid = true;
     }
 
-    private effectViewMap: any = {};
+    private nsViewMap: any = {};
     private android: any;
-
+    private instance;
+    private dimOnAndroid: boolean = false;
     public on(nsView, viewName, theme?, duration?) {
-        
+        if (!theme) theme == 'dark';
+        if (duration) {
+            duration = duration*1000; //convert to ms.
+        } else {
+            duration = 300;
+        }
         return new Promise((resolve, reject) => {
-            console.log('on');
-            console.log(nsView.android);
-            console.dir(blurKit);
-            
-            blurKit.getInstance().blur(nsView.android, 10);
-            resolve();
+            if (this.dimOnAndroid) {
+                if (!this.nsViewMap[viewName]) {
+                    this.nsViewMap[viewName] = nsView;
+                    nsView.opacity = 0;
+                    nsView.backgroundColor = 'rgba(0,0,0,0.7)';
+                    if (theme == 'light') nsView.backgroundColor = 'rgba(255,255,255,0.7)';
+                    nsView.animate({
+                        opacity: 1,
+                        duration: duration
+                    }).then(() => {
+                        resolve();
+                    })
+                }
+            }
         })
     }
 
     public off(viewName, duration?) {
         return new Promise((resolve, reject) => {
-            console.log('off');
+            if (this.dimOnAndroid) {
+                if (duration) {
+                    duration = duration*1000; //convert to ms.
+                } else {
+                    duration = 300;
+                }
+                if (this.nsViewMap[viewName]) {
+                    this.nsViewMap[viewName].animate({
+                        opacity: 0,
+                        duration: duration
+                    }).then(() => {
+                        this.nsViewMap[viewName].backgroundColor = 'transparent';
+                        this.nsViewMap[viewName].opacity = 1;
+                        delete this.nsViewMap[viewName];
+                        resolve();
+                    })
+                }
+                
+            }
             resolve();
-        })
-        
-        
+        })   
     }
 }

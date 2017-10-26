@@ -7,7 +7,7 @@ export class HelloWorldModel extends Observable {
     constructor(page) {
         super();
         this.page = page;
-        this.blur = new Blur();
+        this.blur = new Blur(true);
         
     }
 
@@ -31,17 +31,17 @@ export class HelloWorldModel extends Observable {
     }
 
     public blurBg() {
-        let view = this.page.getViewById('bgimage');
-        this.blur.on(view, 'bgimage').catch(this.handleError);
+        let view = this.page.getViewById('dimmer');
+        this.blur.on(view, 'dimmer').catch(this.handleError);
     }
 
     public blurBgLight() {
-        let view = this.page.getViewById('bgimage');
-        this.blur.on(view, 'bgimage', 'light', 2).catch(this.handleError);
+        let view = this.page.getViewById('dimmer');
+        this.blur.on(view, 'dimmer', 'light', 2).catch(this.handleError);
     }
 
     public unBlurBg() {
-        this.blur.off('bgimage').catch(this.handleError);
+        this.blur.off('dimmer').catch(this.handleError);
     }
 
     private handleError(error) {

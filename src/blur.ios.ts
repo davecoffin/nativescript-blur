@@ -1,6 +1,6 @@
 
 export class Blur {
-    constructor() {}
+    constructor(dimOnAndroid?) {} // dimOnAndroid is ignored on iOS.
 
     private effectViewMap: any = {};
 

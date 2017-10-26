@@ -1,10 +1,15 @@
 [![Twitter URL](https://img.shields.io/badge/twitter-davecoffin-blue.svg)](https://twitter.com/davecoffin)
 
 
-## This plugin is not compatible on Android, but would welcome collaborators, maybe with this library (thanks Nathanael Anderson): https://android-arsenal.com/details/1/3677.
+
 
 ## iOS
 <img src="https://github.com/davecoffin/nativescript-blur/blob/master/blur.gif?raw=true" height="320" > 
+On iOS, you can blur pretty much anything, but the coolest thing to do is blur a transparent view covering what you want blurred. This way everything behind that view gets blurred. 
+
+## Development for Android is underway, and in the mean time I have implemented some placeholder functionality for Android.
+<img src="https://github.com/davecoffin/nativescript-blur/blob/master/blurandroid.gif?raw=true" height="320" > 
+If you pass `true` to the constructor (`let blur = new Blur(true)`), nothing will be different on iOS, but on Android I set the backgroundColor of the NativeScript view that you pass to either light semi transparent or dark semi transparent. So, if you are using this for a "dimmer" effect for modals and stuff, Android will work that way for now until I incorporate a blur library.
 
 ## Installation
 
@@ -18,7 +23,7 @@ tns plugin add nativescript-blur
 ```js
 
 import { Blur } from 'nativescript-blur';
-let blur = new Blur();
+let blur = new Blur(true); // pass true to enable limited usage on android (for now);
 
 // Pick Date
 makeKittyBlurry() {

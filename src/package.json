@@ -1,12 +1,13 @@
 {
     "name": "nativescript-blur",
-    "version": "1.0.3",
-    "description": "Uses the iOS blur effect to blur anything that has an underlying iOS view.",
+    "version": "1.0.4",
+    "description": "Uses the iOS blur effect to blur anything that has an underlying iOS view, and darkens or lightens the background on android..",
     "main": "blur",
     "typings": "index.d.ts",
     "nativescript": {
         "platforms": {
-            "ios": "3.0.0"
+            "ios": "3.0.0",
+            "android": "3.0.0"
         }
     },
     "scripts": {
