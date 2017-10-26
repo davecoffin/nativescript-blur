@@ -1,12 +1,9 @@
-import * as application from 'tns-core-modules/application';
-import * as frame from "tns-core-modules/ui/frame";
-import * as utilsModule from "tns-core-modules/utils/utils";
 
 export class Blur {
     constructor(dimOnAndroid?) {
         if (dimOnAndroid) this.dimOnAndroid = true;
     }
-
+    // removed blurkit for now.
     private nsViewMap: any = {};
     private android: any;
     private instance;
