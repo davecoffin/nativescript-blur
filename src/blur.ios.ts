@@ -17,7 +17,7 @@ export class Blur {
                 if (!this.effectViewMap[viewName]) {
                     let iosView = nsView.ios;
                     let effectView = UIVisualEffectView.alloc().init();
-                    effectView.frame = CGRectMake(0, 0, iosView.bounds.size.width, iosView.bounds.size.height + 20);
+                    effectView.frame = CGRectMake(0, 0, iosView.bounds.size.width, iosView.bounds.size.height);
                     effectView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
                     this.effectViewMap[viewName] = effectView;
                     iosView.addSubview(effectView)
@@ -41,11 +41,12 @@ export class Blur {
         return new Promise((resolve, reject) => {
             if (!duration) duration = .3;
             if (this.effectViewMap[viewName]) {
+                let effectView = this.effectViewMap[viewName];
+                delete this.effectViewMap[viewName];
                 UIView.animateWithDurationAnimationsCompletion(duration, () => {
-                    this.effectViewMap[viewName].effect = null;
+                    effectView.effect = null;
                 }, () => {
-                    this.effectViewMap[viewName].removeFromSuperview();
-                    delete this.effectViewMap[viewName];
+                    effectView.removeFromSuperview();
                     resolve();
                 })
             } else {
