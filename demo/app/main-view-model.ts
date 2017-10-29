@@ -30,9 +30,9 @@ export class HelloWorldModel extends Observable {
         this.blur.off('kitty').catch(this.handleError);
     }
 
-    public blurBg() {
+    public blurBg(args) {
         let view = this.page.getViewById('dimmer');
-        this.blur.on(view, 'dimmer').catch(this.handleError);
+        this.blur.on(view, 'dimmer', args.object.id).catch(this.handleError);
     }
 
     public blurBgLight() {

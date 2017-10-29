@@ -10,9 +10,22 @@ export class Blur {
             if (iosView && iosView.addSubview) {
                 if (!theme || theme == 'dark') {
                     theme = UIBlurEffectStyle.Dark;
-                } else {
+                } else if (theme == 'extraDark') {
+                    theme = UIBlurEffectStyle.ExtraDark;
+                } else if (theme == 'light') {
                     theme = UIBlurEffectStyle.Light;
+                } else if (theme == 'extraLight') {
+                    theme = UIBlurEffectStyle.ExtraLight;
+                } else if (theme == 'regular') {
+                    theme = UIBlurEffectStyle.Regular;
+                } else if (theme == 'prominent') {
+                    theme = UIBlurEffectStyle.Prominent;
+                } else {
+                    // its dark if they pass a non supported theme.
+                    theme = UIBlurEffectStyle.Dark;
                 }
+                
+
                 if (!duration) duration = .3;
                 if (!this.effectViewMap[viewName]) {
                     let iosView = nsView.ios;

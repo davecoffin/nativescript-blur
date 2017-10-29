@@ -4,11 +4,14 @@
         <StackLayout id="dimmer" width="100%" height="100%" />
         <StackLayout class="p-20" id="stack">
             <Button text="Blur the Cat" tap="{{blurCat}}" />
-            <Button text="Blur the Cat (light theme)" tap="{{blurCatLight}}" />
             <Button text="Unblur the Cat" tap="{{unBlurCat}}" />
 
-            <Button text="Blur the Background" tap="{{blurBg}}" />
-            <Button text="Blur the Background (light theme)" tap="{{blurBgLight}}" />
+            <Button text="Blur the Background Dark" id="dark" tap="{{blurBg}}" />
+            <Button text="Blur the Background Extra Dark" id="extraDark" tap="{{blurBg}}" />
+            <Button text="Blur the Background Light" id="light" tap="{{blurBg}}" />
+            <Button text="Blur the Background Extra Light" id="extraLight" tap="{{blurBg}}" />
+            <Button text="Blur the Background Regular" id="regular" tap="{{blurBg}}" />
+            <Button text="Blur the Background Prominent" id="prominent" tap="{{blurBg}}" />
             <Button text="Unblur the Background" tap="{{unBlurBg}}" />
 
 
