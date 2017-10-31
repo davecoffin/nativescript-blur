@@ -14,6 +14,8 @@ On iOS, you can blur pretty much anything, but the coolest thing to do is blur a
 On android you can only blur image views currently. But you have control over how much you want to blur.
 The android demo image is showing blur radius level 10.
 
+Android image blurring is powered by wonderkiln/BlurKit-Android
+
 ## Installation
 
 ```javascript
