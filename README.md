@@ -1,7 +1,7 @@
-[![Twitter URL](https://img.shields.io/badge/twitter-davecoffin-blue.svg)](https://twitter.com/davecoffin)
+[![Twitter URL](https://img.shields.io/badge/twitter-%40davecoffin-blue.svg)](https://twitter.com/davecoffin)
+[![Twitter URL](https://img.shields.io/badge/twitter-%40MultiShiv19-blue.svg)](https://twitter.com/MultiShiv19)
 
-
-
+[![NPM](https://nodei.co/npm/nativescript-blur.png)](https://nodei.co/npm/nativescript-blur/)
 
 ## iOS
 <img src="https://github.com/shiv19/nativescript-blur/blob/master/blur.gif?raw=true" height="320" > 
