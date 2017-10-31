@@ -12,6 +12,7 @@ On iOS, you can blur pretty much anything, but the coolest thing to do is blur a
 <img src="https://github.com/shiv19/nativescript-blur/blob/master/blurandroid.gif?raw=true" height="320" > 
 
 On android you can only blur image views currently. But you have control over how much you want to blur.
+The android demo image is showing blur radius level 10.
 
 ## Installation
 
