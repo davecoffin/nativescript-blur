@@ -106,4 +106,5 @@ Off animates the blur off. Pass it the key you used to create it. If the key doe
 ## License
 
 Apache License Version 2.0, January 2004
+
 Copyright 2017 Dave Coffin, Shiva Prasad
