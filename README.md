@@ -4,11 +4,13 @@
 
 
 ## iOS
-<img src="https://github.com/davecoffin/nativescript-blur/blob/master/blur.gif?raw=true" height="320" > 
+<img src="https://github.com/shiv19/nativescript-blur/blob/master/blur.gif?raw=true" height="320" > 
+
 On iOS, you can blur pretty much anything, but the coolest thing to do is blur a transparent view covering what you want blurred. This way everything behind that view gets blurred. 
 
 ## Android
-<img src="https://github.com/davecoffin/nativescript-blur/blob/master/blurandroid.gif?raw=true" height="320" > 
+<img src="https://github.com/shiv19/nativescript-blur/blob/master/blurandroid.gif?raw=true" height="320" > 
+
 On android you can only blur image views currently. But you have control over how much you want to blur.
 
 ## Installation
