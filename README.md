@@ -22,6 +22,15 @@ Android image blurring is powered by wonderkiln/BlurKit-Android
 tns plugin add nativescript-blur
 ```
 
+### Important Setup, <Android ONLY>
+In your project's `app/App_Resources/android/app.gradle` file add the following lines
+inside the block for `defaultConfig`. Without this step, BlurKit won't work.
+
+```
+renderscriptTargetApi 25
+renderscriptSupportModeEnabled true
+```
+
 ## Usage 
 
 
