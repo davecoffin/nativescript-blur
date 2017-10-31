@@ -1,6 +1,12 @@
 export declare class Blur {
-    constructor(dimOnAndroid?: any);
+    constructor();
     private effectViewMap;
-    on(nsView: any, viewName: any, theme?: any, duration?: any): Promise<{}>;
+    on(
+        nsView: any,
+        viewName: any,
+        radius: number,
+        theme?: any,
+        duration?: any
+    ): Promise<{}>;
     off(viewName: any, duration?: any): Promise<{}>;
 }
