@@ -69,6 +69,7 @@ clearUpKitty() {
 `on(view, keyTitle, radius, theme?, duration?): Promise;`
 
 Radius is for android. // not optional, must be between 1 - 25 (inclusive)
+
 Theme and Duration are for iOS. // optional
 
 To turn it on, you must pass a view, a key name and a number to set radius. The key name can be anything, you use it to turn it off. This way you can blur different things at different times. You can pass a custom duration. The duration is in seconds, for example if you pass `.2` the animation will last .2 seconds. 
