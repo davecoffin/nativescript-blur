@@ -9,6 +9,8 @@ android {
   defaultConfig {  
     generatedDensities = []
     applicationId = "org.nativescript.demo"  
+    renderscriptTargetApi 25
+    renderscriptSupportModeEnabled true
   }  
   aaptOptions {  
     additionalParameters "--no-version-vectors"  

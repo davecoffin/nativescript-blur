@@ -1,20 +1,34 @@
-[![Twitter URL](https://img.shields.io/badge/twitter-davecoffin-blue.svg)](https://twitter.com/davecoffin)
+[![Twitter URL](https://img.shields.io/badge/twitter-%40davecoffin-blue.svg)](https://twitter.com/davecoffin)
+[![Twitter URL](https://img.shields.io/badge/twitter-%40MultiShiv19-blue.svg)](https://twitter.com/MultiShiv19)
 
-
-
+[![NPM](https://nodei.co/npm/nativescript-blur.png)](https://nodei.co/npm/nativescript-blur/)
 
 ## iOS
-<img src="https://github.com/davecoffin/nativescript-blur/blob/master/blur.gif?raw=true" height="320" > 
+<img src="https://github.com/shiv19/nativescript-blur/blob/master/blur.gif?raw=true" height="320" > 
+
 On iOS, you can blur pretty much anything, but the coolest thing to do is blur a transparent view covering what you want blurred. This way everything behind that view gets blurred. 
 
-## Development for Android is underway, and in the mean time I have implemented some placeholder functionality for Android.
-<img src="https://github.com/davecoffin/nativescript-blur/blob/master/blurandroid.gif?raw=true" height="320" > 
-If you pass `true` to the constructor (`let blur = new Blur(true)`), nothing will be different on iOS, but on Android I set the backgroundColor of the NativeScript view that you pass to either light semi transparent or dark semi transparent. So, if you are using this for a "dimmer" effect for modals and stuff, Android will work that way for now until I incorporate a blur library.
+## Android
+<img src="https://github.com/shiv19/nativescript-blur/blob/master/blurandroid.gif?raw=true" height="320" > 
+
+On android you can only blur image views currently. But you have control over how much you want to blur.
+The android demo image is showing blur radius level 10.
+
+Android image blurring is powered by wonderkiln/BlurKit-Android
 
 ## Installation
 
 ```javascript
 tns plugin add nativescript-blur
+```
+
+### Important Setup, <Android ONLY>
+In your project's `app/App_Resources/android/app.gradle` file add the following lines
+inside the block for `defaultConfig`. Without this step, BlurKit won't work.
+
+```
+renderscriptTargetApi 25
+renderscriptSupportModeEnabled true
 ```
 
 ## Usage 
@@ -23,12 +37,18 @@ tns plugin add nativescript-blur
 ```js
 
 import { Blur } from 'nativescript-blur';
+import * as app from "tns-core-modules/application";
 let blur = new Blur(true); // pass true to enable limited usage on android (for now);
 
 // Pick Date
 makeKittyBlurry() {
     let kittyView = page.getViewById('kitty');
-    blur.on(kittyView, 'kitty', 'light').then(() => {
+    blur.on(kittyView, 'kitty', 'light').then((imageSource) => {
+        if (app.android) { // android only
+            let image: any = this.page.getViewById("kitty");
+            image.imageSource = imageSource; // replace the image source
+            // with the image source that the plugin gives you
+        }
         console.log('Kitty has become blurry.');
     }).catch(e => {
         console.dir(e);
@@ -36,7 +56,19 @@ makeKittyBlurry() {
 }
 
 clearUpKitty() {
-    blur.off('kitty').then(() => {
+    blur.off('kitty').then((src) => {
+        if (app.android) { // android only
+            let image: any = this.page.getViewById("kitty");
+
+            // Here we're loading from URL, because we're
+            // assigning URL in XML, if you have assigned
+            // app resource in XML, you would want to
+            // .fromResource() here. for more info
+            // https://docs.nativescript.org/cookbook/image-source
+            ImageSource.fromUrl(src).then(imageSource => {
+                image.imageSource = imageSource;
+            });
+        }
         console.log('Kitty has cleared up.')
     });
 }
@@ -45,9 +77,13 @@ clearUpKitty() {
 
 ## API
 
-`on(view, keyTitle, theme?, duration?): Promise;`
+`on(view, keyTitle, radius, theme?, duration?): Promise;`
 
-To turn it on, you must pass a view and a key name. The key name can be anything, you use it to turn it off. This way you can blur different things at different times. You can pass a custom duration. The duration is in seconds, for example if you pass `.2` the animation will last .2 seconds. 
+Radius is for android. // not optional, must be between 1 - 25 (inclusive)
+
+Theme and Duration are for iOS. // optional
+
+To turn it on, you must pass a view, a key name and a number to set radius. The key name can be anything, you use it to turn it off. This way you can blur different things at different times. You can pass a custom duration. The duration is in seconds, for example if you pass `.2` the animation will last .2 seconds. 
 Supported themes for iOS are:
 ```js
 dark
@@ -58,12 +94,6 @@ regular
 prominent
 ```
 Play around with the themes to see which looks the best, and learn more about these options here: https://developer.apple.com/documentation/uikit/uiblureffectstyle
-
-Supported themes for Android are:
-```js
-light
-dark
-```
 
 The view needs to be a nativescript view that has an `ios` property, and that property must support `addSubview`. Here are some examples of NativeScript UI elements you can pass:
 ```js
@@ -77,17 +107,8 @@ Label
 ```
 If there is no `ios` property on the element you pass or `addSubview` doesn't exist on the ios property, it will return an error.
 
-On Android, the view must be a view that supports the NativeScript backgroundColor attribute, which most do. For example you could have a view like this:
-```
-<StackLayout id="welcome_overlay">
-    <Label text="Welcome!" />
-    <Label text="This is my brand new app, its not a new brand app, this is my favorite app, because it is my app. Its a brand new app." />
-    <Image src="res://mejumping" />
-</StackLayout>
-```
-And you could pass
-`this.blur.on(page.getViewById('welcome_overlay'), 'welcome_overlay', 'dark');`
-and it would darken the background of the StackLayout. Check out the source of the demo if you need more info on how it currently works on Android.
+On Android, only view of type Image is supported. And this method returns an image source which you have to assign
+to the image element in your view (please refer demo/ sample code).
 
 `off(keyTitle, duration?): Promise;`
 
@@ -97,3 +118,5 @@ Off animates the blur off. Pass it the key you used to create it. If the key doe
 ## License
 
 Apache License Version 2.0, January 2004
+
+Copyright 2017 Dave Coffin, Shiva Prasad
