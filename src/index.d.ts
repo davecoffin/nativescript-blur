@@ -1,12 +1,6 @@
+import { View } from "@nativescript/core";
 export declare class Blur {
-    constructor();
     private effectViewMap;
-    on(
-        nsView: any,
-        viewName: any,
-        radius: number,
-        theme?: any,
-        duration?: any
-    ): Promise<{}>;
-    off(viewName: any, duration?: any): Promise<{}>;
+    on(nsView: View, viewName: string, radius: number, theme?: 'dark' | 'extraDark' | 'light' | 'extraLight' | 'regular' | 'prominent', duration?: number): Promise<unknown>;
+    off(viewName: string, duration?: number): Promise<unknown>;
 }
