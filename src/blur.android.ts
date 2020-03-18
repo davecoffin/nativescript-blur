@@ -2,19 +2,20 @@ import { Application, View, Image, ImageSource } from "@nativescript/core";
 declare var com: any;
 
 export class Blur {
+    effectViewMap: any = {};
+
     constructor() {
         // Initialize blurkit
         com.wonderkiln.blurkit.BlurKit.init(Application.android.context);
     }
 
-    private nsViewMap: any = {};
     on(nsView: View | Image, viewName: string, radius: number, theme?: string, duration?: number) {
         return new Promise((resolve, reject) => {
             if (radius < 1 || radius > 25) {
                 reject("Radius should be between 1 - 25 (inclusive)");
             } else {
-                if (!this.nsViewMap[viewName] && nsView instanceof Image) {
-                    this.nsViewMap[viewName] = nsView.src;
+                if (!this.effectViewMap[viewName] && nsView instanceof Image) {
+                    this.effectViewMap[viewName] = nsView.src;
                     // console.log(this.nsViewMap[viewName]);
                     resolve(
                         new ImageSource(
@@ -32,10 +33,10 @@ export class Blur {
 
     off(viewName: string, duration?: number) {
         return new Promise((resolve, reject) => {
-            if (this.nsViewMap[viewName]) {
+            if (this.effectViewMap[viewName]) {
                 // console.log(this.nsViewMap[viewName]);
-                resolve(this.nsViewMap[viewName]);
-                delete this.nsViewMap[viewName];
+                resolve(this.effectViewMap[viewName]);
+                delete this.effectViewMap[viewName];
             } else {
                 reject("View not found");
             }

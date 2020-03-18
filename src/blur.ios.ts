@@ -2,7 +2,7 @@ import { View } from "@nativescript/core";
 
 export class Blur {
 
-    private effectViewMap: any = {};
+    effectViewMap: any = {};
 
     on(nsView: View, viewName: string, radius: number, theme?: 'dark' | 'extraDark' | 'light' | 'extraLight' | 'regular' | 'prominent', duration?: number) {
         return new Promise((resolve, reject) => {
@@ -32,8 +32,13 @@ export class Blur {
                     // note: passing duration explicitly as 0, will skip animating effect and apply directly
                 }
                 if (!this.effectViewMap[viewName]) {
-                    let iosView = nsView.ios;
-                    let effectView = UIVisualEffectView.alloc().init();
+                  let iosView: UIView = nsView.ios;
+                  if (iosView && iosView.subviews && iosView.subviews.count && iosView.subviews.objectAtIndex(0) instanceof UIVisualEffectView) {
+                      // view already contains visual effect
+                      // this is especially helpful when blur is used in recycled rows where Blur instance could end up being recreated whereby wiping out it's local effectViewMap however the UIView was recycled and already contained the efffect
+                      resolve();
+                  } else {
+                    const effectView = UIVisualEffectView.alloc().init();
                     effectView.frame = CGRectMake(
                         0,
                         0,
@@ -66,6 +71,7 @@ export class Blur {
                             }
                         );
                     }
+                  }
                 }
             } else {
                 reject("Sorry, this view cannot be made blurry.");
