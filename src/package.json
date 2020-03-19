@@ -1,8 +1,7 @@
 {
     "name": "nativescript-blur",
-    "version": "2.0.0",
-    "description":
-        "Uses the iOS blur effect to blur anything that has an underlying iOS view, and blurs images on android, using BlurKit..",
+    "version": "3.0.0",
+    "description": "Uses the iOS blur effect to blur anything that has an underlying iOS view, and blurs images on android, using BlurKit..",
     "main": "blur",
     "typings": "index.d.ts",
     "nativescript": {
@@ -14,34 +13,27 @@
     "scripts": {
         "tsc": "tsc -skipLibCheck",
         "build": "npm i && tsc",
-        "postclone":
-            "npm i && node scripts/postclone.js && cd ../demo && npm i && cd ../src && npm run plugin.link",
-        "test.android":
-            "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
-        "test.ios":
-            "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
-        "tslint":
-            "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
-        "plugin.link":
-            "npm link && cd ../demo && npm link nativescript-blur && cd ../src",
+        "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && cd ../src && npm run plugin.link",
+        "test.android": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
+        "test.ios": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
+        "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+        "plugin.link": "npm link && cd ../demo && npm link nativescript-blur && cd ../src",
         "plugin.tscwatch": "npm run tsc -- -w",
-        "demo.ios":
-            "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
-        "debug.ios":
-            "npm i && npm run tsc && cd ../demo && tns debug ios --syncAllFiles",
-        "demo.android":
-            "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
-        "debug.android":
-            "npm i && npm run tsc && cd ../demo && tns debug android --syncAllFiles",
+        "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
+        "debug.ios": "npm i && npm run tsc && cd ../demo && tns debug ios --syncAllFiles",
+        "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
+        "debug.android": "npm i && npm run tsc && cd ../demo && tns debug android --syncAllFiles",
         "demo.reset": "cd ../demo && rimraf platforms",
-        "plugin.prepare":
-            "npm run tsc && cd ../demo && tns plugin remove nativescript-blur && tns plugin add ../src",
-        "clean":
-            "cd ../demo && rimraf hooks node_modules platforms && cd ../src && rimraf node_modules && npm run plugin.link",
-        "ci.tslint":
-            "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'"
+        "plugin.prepare": "npm run tsc && cd ../demo && tns plugin remove nativescript-blur && tns plugin add ../src",
+        "clean": "cd ../demo && rimraf hooks node_modules platforms && cd ../src && rimraf node_modules && npm run plugin.link",
+        "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'"
     },
-    "keywords": ["NativeScript", "JavaScript", "Android", "iOS"],
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS"
+    ],
     "author": {
         "name": "Dave Coffin",
         "email": "dave@davecoffin.com"
@@ -60,12 +52,12 @@
     "homepage": "https://github.com/davecoffin/nativescript-blur",
     "readmeFilename": "README.md",
     "devDependencies": {
-        "tns-core-modules": "^3.1.0",
-        "tns-platform-declarations": "^3.1.0",
-        "typescript": "~2.3.0",
+        "tns-core-modules": "^6.0.0",
+        "tns-platform-declarations": "^6.0.0",
+        "typescript": "~3.5.3",
         "prompt": "^1.0.0",
         "rimraf": "^2.5.0",
-        "tslint": "^5.0.0"
+        "tslint": "^6.0.0"
     },
     "dependencies": {},
     "bootstrapper": "nativescript-plugin-seed"
