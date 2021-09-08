@@ -18,8 +18,16 @@ Android image blurring is powered by wonderkiln/BlurKit-Android
 
 ## Installation
 
-```javascript
-tns plugin add nativescript-blur
+## NativeScript 7+:
+
+```bash
+ns plugin add @nstudio/nativescript-blur
+```
+
+## NativeScript lower than 7:
+
+```bash
+ns plugin add nativescript-blur
 ```
 
 ### Important Setup, <Android ONLY>
